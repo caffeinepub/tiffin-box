@@ -1,18 +1,19 @@
-# Tiffin Box - School Tiffin Ordering System
+# Tiffin Box
 
 ## Current State
-New project. No existing application files.
+New project build. No existing source files.
 
 ## Requested Changes (Diff)
 
 ### Add
-- Homepage with weekly tiffin menu display (Mon-Sat)
-- Order form page with full parent/child details and day/food auto-fill logic
-- Admin dashboard at /admin with login (username/password)
-- Admin table showing all orders with columns: Date, Parent Name, Phone, Child Name, School, Class, Roll Number, Day, Food Item
-- Admin actions: delete order, mark as delivered, filter by day/school, search by child name or phone
-- Real-time order updates in admin dashboard (polling)
-- Order confirmation message on submission
+- Homepage with hero section and weekly menu (Mon-Sat) with day-specific food items
+- Order form: parent name, phone, child name, school, class, roll number, day selection (food auto-fills), optional address
+- Success confirmation after order placement
+- Admin dashboard at /admin with login (admin / tiffin123)
+- Admin orders table: Date, Parent Name, Phone, Child Name, School, Class, Roll No, Day, Food Item
+- Search by child name or phone, filter by day or school
+- Mark as Delivered and Delete actions
+- Stats row (Total / Pending / Delivered) with polling
 
 ### Modify
 N/A
@@ -21,22 +22,8 @@ N/A
 N/A
 
 ## Implementation Plan
-
-### Backend (Motoko)
-- Order type: { id, timestamp, parentName, phone, childName, schoolName, class_, rollNumber, day, foodItem, address, status (pending/delivered) }
-- Admin credentials stored in actor (username: admin, password: tiffin123)
-- Functions:
-  - submitOrder(order details) -> Result
-  - getOrders() -> [Order] (admin only)
-  - deleteOrder(id) -> Result (admin only)
-  - markDelivered(id) -> Result (admin only)
-  - adminLogin(username, password) -> Bool
-
-### Frontend
-- Homepage: hero section, weekly menu grid cards, CTA to order
-- Order Form page: form with day dropdown triggering food auto-fill, submission flow
-- Admin Login page: simple login form
-- Admin Dashboard: orders table with search, filter, delete, mark delivered
-- Routing: / (home), /order, /admin (login), /admin/dashboard
-- Child-friendly design: soft warm colors, rounded cards, playful typography
-- Mobile-first responsive layout
+- Backend: store orders in stable memory, expose CRUD methods (placeOrder, getOrders, deleteOrder, markDelivered)
+- Admin auth: hardcoded credentials check on backend
+- Frontend: React Router with / and /admin routes
+- Weekly menu map: Monday=Dal Rice, Tuesday=Rajma Chawal, Wednesday=Chole Bhature, Thursday=Paneer Sabzi Roti, Friday=Pulao, Saturday=Biryani
+- Admin polls orders every 10 seconds

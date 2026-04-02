@@ -1,9 +1,7 @@
 import { createRootRoute, createRoute } from "@tanstack/react-router";
 import RootLayout from "./layouts/RootLayout";
-import AdminDashboardPage from "./pages/AdminDashboardPage";
-import AdminLoginPage from "./pages/AdminLoginPage";
+import AdminPage from "./pages/AdminPage";
 import HomePage from "./pages/HomePage";
-import OrderPage from "./pages/OrderPage";
 
 const rootRoute = createRootRoute({
   component: RootLayout,
@@ -15,27 +13,10 @@ const indexRoute = createRoute({
   component: HomePage,
 });
 
-const orderRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/order",
-  component: OrderPage,
-});
-
 const adminRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/admin",
-  component: AdminLoginPage,
+  component: AdminPage,
 });
 
-const adminDashboardRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/admin/dashboard",
-  component: AdminDashboardPage,
-});
-
-export const routeTree = rootRoute.addChildren([
-  indexRoute,
-  orderRoute,
-  adminRoute,
-  adminDashboardRoute,
-]);
+export const routeTree = rootRoute.addChildren([indexRoute, adminRoute]);

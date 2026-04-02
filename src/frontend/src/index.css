@@ -2,51 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Figtree";
+  src: url("/assets/fonts/Figtree.woff2") format("woff2");
+  font-weight: 300 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("/assets/fonts/Fraunces.woff2") format("woff2");
+  font-weight: 300 900;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     --radius: 0.75rem;
-    /* Warm cream background #FFF4E6 */
-    --background: 0.97 0.022 75;
-    /* Deep brown foreground #2B1B14 */
-    --foreground: 0.22 0.045 45;
-    /* Card white */
-    --card: 0.99 0.008 75;
-    --card-foreground: 0.22 0.045 45;
-    --popover: 0.99 0.008 75;
-    --popover-foreground: 0.22 0.045 45;
-    /* Primary orange #F6A23A */
-    --primary: 0.75 0.165 58;
-    --primary-foreground: 0.99 0 0;
-    /* Secondary pastel yellow */
-    --secondary: 0.96 0.055 88;
-    --secondary-foreground: 0.22 0.045 45;
-    /* Muted warm gray */
-    --muted: 0.94 0.018 75;
-    --muted-foreground: 0.5 0.035 45;
-    /* Accent peach */
-    --accent: 0.93 0.04 60;
-    --accent-foreground: 0.22 0.045 45;
-    /* Destructive red */
+    /* Background: warm off-white #F7F3EC */
+    --background: 0.965 0.018 85;
+    /* Foreground: #111827 */
+    --foreground: 0.17 0.025 265;
+    /* Card: white */
+    --card: 1 0 0;
+    --card-foreground: 0.17 0.025 265;
+    --popover: 1 0 0;
+    --popover-foreground: 0.17 0.025 265;
+    /* Primary green: #2FAE63 */
+    --primary: 0.645 0.18 155;
+    --primary-foreground: 1 0 0;
+    /* Secondary: light hero-blue #BFE7F6 */
+    --secondary: 0.91 0.055 215;
+    --secondary-foreground: 0.17 0.025 265;
+    /* Muted */
+    --muted: 0.95 0.012 85;
+    --muted-foreground: 0.52 0.018 255;
+    /* Accent orange: #F57C00 */
+    --accent: 0.69 0.185 55;
+    --accent-foreground: 1 0 0;
+    /* Destructive */
     --destructive: 0.577 0.245 27.325;
     --destructive-foreground: 0.985 0 0;
-    --border: 0.91 0.025 70;
-    --input: 0.91 0.025 70;
-    --ring: 0.75 0.165 58;
-    /* Chart colors */
-    --chart-1: 0.75 0.165 58;
-    --chart-2: 0.7 0.14 155;
+    --border: 0.9 0.02 80;
+    --input: 0.9 0.02 80;
+    --ring: 0.645 0.18 155;
+    /* Chart */
+    --chart-1: 0.645 0.18 155;
+    --chart-2: 0.69 0.185 55;
     --chart-3: 0.65 0.13 195;
     --chart-4: 0.6 0.15 295;
     --chart-5: 0.65 0.14 355;
-    /* Sidebar (admin area: pale mint #E7F3F6) */
-    --sidebar: 0.95 0.022 210;
-    --sidebar-foreground: 0.22 0.045 45;
-    --sidebar-primary: 0.75 0.165 58;
-    --sidebar-primary-foreground: 0.99 0 0;
-    --sidebar-accent: 0.9 0.03 210;
-    --sidebar-accent-foreground: 0.22 0.045 45;
-    --sidebar-border: 0.88 0.03 200;
-    --sidebar-ring: 0.75 0.165 58;
+    /* Sidebar: light blue for admin #BFE7F6 */
+    --sidebar: 0.945 0.04 215;
+    --sidebar-foreground: 0.17 0.025 265;
+    --sidebar-primary: 0.645 0.18 155;
+    --sidebar-primary-foreground: 1 0 0;
+    --sidebar-accent: 0.91 0.055 215;
+    --sidebar-accent-foreground: 0.17 0.025 265;
+    --sidebar-border: 0.85 0.04 210;
+    --sidebar-ring: 0.645 0.18 155;
+    /* Brand colors */
+    --hero-blue: 0.91 0.055 215;
+    --green-brand: 0.645 0.18 155;
+    --orange-accent: 0.69 0.185 55;
   }
 
   * {
@@ -55,7 +73,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: "Nunito", sans-serif;
+    font-family: "Figtree", sans-serif;
   }
 
   h1,
@@ -64,15 +82,25 @@
   h4,
   h5,
   h6 {
-    font-family: "Fredoka", sans-serif;
+    font-family: "Figtree", sans-serif;
+    font-weight: 700;
   }
 }
 
 @layer utilities {
   .font-display {
-    font-family: "Fredoka", sans-serif;
+    font-family: "Figtree", sans-serif;
   }
-  .font-body {
-    font-family: "Nunito", sans-serif;
+  .bg-hero-blue {
+    background-color: oklch(var(--hero-blue));
+  }
+  .bg-orange-brand {
+    background-color: oklch(var(--orange-accent));
+  }
+  .text-green-brand {
+    color: oklch(var(--green-brand));
+  }
+  .doodle-bg {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23a8d5a2' fill-opacity='0.07'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3Cpath d='M10 10 L20 20 M40 10 L50 20 M10 40 L20 50 M40 40 L50 50' stroke='%23a8d5a2' stroke-width='1.5' stroke-opacity='0.07'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
 }
